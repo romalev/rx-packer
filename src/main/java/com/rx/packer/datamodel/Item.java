@@ -1,4 +1,4 @@
-package com.mobiquityinc.datamodel;
+package com.rx.packer.datamodel;
 
 /**
  * Created by RLYBD20 on 15/09/2017.

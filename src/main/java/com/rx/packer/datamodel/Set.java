@@ -1,4 +1,4 @@
-package com.mobiquityinc.datamodel;
+package com.rx.packer.datamodel;
 
 import java.util.List;
 

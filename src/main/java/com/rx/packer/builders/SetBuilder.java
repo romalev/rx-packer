@@ -1,8 +1,8 @@
-package com.mobiquityinc.builders;
+package com.rx.packer.builders;
 
-import com.mobiquityinc.datamodel.Item;
-import com.mobiquityinc.datamodel.Set;
-import com.mobiquityinc.exception.APIException;
+import com.rx.packer.datamodel.Item;
+import com.rx.packer.datamodel.Set;
+import com.rx.packer.exception.APIException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 

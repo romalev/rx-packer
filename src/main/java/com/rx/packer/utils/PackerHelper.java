@@ -1,6 +1,6 @@
-package com.mobiquityinc.utils;
+package com.rx.packer.utils;
 
-import com.mobiquityinc.datamodel.Item;
+import com.rx.packer.datamodel.Item;
 
 import java.util.ArrayList;
 import java.util.Collections;

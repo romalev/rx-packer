@@ -1,11 +1,11 @@
-package com.mobiquityinc;
+package com.rx.packer;
 
-import com.mobiquityinc.builders.Builder;
-import com.mobiquityinc.builders.SetBuilder;
-import com.mobiquityinc.datamodel.Set;
-import com.mobiquityinc.utils.FileRxStreamPublisher;
-import com.mobiquityinc.utils.PackerHelper;
-import com.mobiquityinc.utils.Parameters;
+import com.rx.packer.builders.Builder;
+import com.rx.packer.builders.SetBuilder;
+import com.rx.packer.datamodel.Set;
+import com.rx.packer.utils.FileRxStreamPublisher;
+import com.rx.packer.utils.PackerHelper;
+import com.rx.packer.utils.Parameters;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import org.apache.log4j.Logger;

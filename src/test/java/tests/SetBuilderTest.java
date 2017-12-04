@@ -1,9 +1,9 @@
 package tests;
 
-import com.mobiquityinc.builders.Builder;
-import com.mobiquityinc.builders.SetBuilder;
-import com.mobiquityinc.datamodel.Item;
-import com.mobiquityinc.datamodel.Set;
+import com.rx.packer.builders.Builder;
+import com.rx.packer.builders.SetBuilder;
+import com.rx.packer.datamodel.Item;
+import com.rx.packer.datamodel.Set;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

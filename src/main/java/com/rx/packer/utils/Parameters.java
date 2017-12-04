@@ -1,4 +1,4 @@
-package com.mobiquityinc.utils;
+package com.rx.packer.utils;
 
 import org.apache.log4j.Logger;
 

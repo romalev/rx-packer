@@ -1,7 +1,7 @@
 package tests;
 
-import com.mobiquityinc.datamodel.Item;
-import com.mobiquityinc.utils.PackerHelper;
+import com.rx.packer.datamodel.Item;
+import com.rx.packer.utils.PackerHelper;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

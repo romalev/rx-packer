@@ -1,4 +1,4 @@
-package com.mobiquityinc.exception;
+package com.rx.packer.exception;
 
 /**
  * Created by RLYBD20 on 15/09/2017.

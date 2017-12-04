@@ -1,4 +1,4 @@
-package com.mobiquityinc.utils;
+package com.rx.packer.utils;
 
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;

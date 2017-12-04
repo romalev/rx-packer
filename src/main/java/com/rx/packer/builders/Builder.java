@@ -1,4 +1,4 @@
-package com.mobiquityinc.builders;
+package com.rx.packer.builders;
 
 /**
  * Main interface accountable for  building things within application.
