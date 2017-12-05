@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Contains helper - like methods needed for Packer application.
+ * Helps packaging things into packages.
  * <p>
  * Created by RLYBD20 on 1/11/2017.
  */

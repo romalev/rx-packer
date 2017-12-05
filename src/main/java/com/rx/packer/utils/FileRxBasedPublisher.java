@@ -10,16 +10,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Represents rx-like publisher that publish given file by emitting line by line (line-> new event) to the
+ * Represents rx-like publisher that publishes given file by emitting line by line (line-> new event) to the
  * executable pipeline.
  */
-public class FileRxStreamPublisher implements FlowableOnSubscribe<String> {
+public class FileRxBasedPublisher implements FlowableOnSubscribe<String> {
 
-    private static final Logger LOGGER = Logger.getLogger(FileRxStreamPublisher.class);
+    private static final Logger LOGGER = Logger.getLogger(FileRxBasedPublisher.class);
 
     private final String fileName;
 
-    public FileRxStreamPublisher(final String fileName) {
+    public FileRxBasedPublisher(final String fileName) {
         this.fileName = fileName;
     }
 

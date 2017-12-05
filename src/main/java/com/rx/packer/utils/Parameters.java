@@ -12,21 +12,19 @@ public final class Parameters {
 
     private static final Logger logger = Logger.getLogger(Parameters.class);
 
-    private static final String PROPERTY_FILE_NAME = "application.properties";
-
     private static int maxPackageWeight;
     private static int maxItemWeight;
     private static int maxItemCost;
     private static int maxPackageSize;
     private static String fileNameWithSets;
 
-    public static void init() {
-        logger.info("Initializing application properties " + PROPERTY_FILE_NAME + ".");
+    public static void init(final String parametersFile) {
+        logger.info("Initializing application parameters " + parametersFile + ".");
         final Properties properties = new Properties();
         try {
-            properties.load(Parameters.class.getClassLoader().getResourceAsStream(PROPERTY_FILE_NAME));
+            properties.load(Parameters.class.getClassLoader().getResourceAsStream(parametersFile));
         } catch (IOException e) {
-            logger.error("Error occurred while reading property file: " + PROPERTY_FILE_NAME + " Error details are: " + e.getMessage());
+            logger.error("Error occurred while reading parameters file: " + parametersFile + " Error details are: " + e.getMessage());
         }
 
         maxPackageWeight = Integer.parseInt(properties.getProperty("max.package.weight"));
