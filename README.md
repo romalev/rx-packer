@@ -52,9 +52,7 @@ _Additional constraints:_
 RxJava is considered as backbone to drive the solution for task described above.
 
 
-_TODO:_ 
-* investigate the issue with the euro sign in maven.
-* create a fat jar.
+_Things to be improved:_ 
 * finish the task.
 * utilize the power of eclipse collection.
 * read a file enabling back - pressure. 

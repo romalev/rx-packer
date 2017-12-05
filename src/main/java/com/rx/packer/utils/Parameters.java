@@ -2,7 +2,6 @@ package com.rx.packer.utils;
 
 import org.apache.log4j.Logger;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -25,9 +24,9 @@ public final class Parameters {
         logger.info("Initializing application properties " + PROPERTY_FILE_NAME + ".");
         final Properties properties = new Properties();
         try {
-            properties.load(new FileInputStream(Parameters.class.getClassLoader().getResource(PROPERTY_FILE_NAME).getFile()));
+            properties.load(Parameters.class.getClassLoader().getResourceAsStream(PROPERTY_FILE_NAME));
         } catch (IOException e) {
-            logger.error("Error occurred while reading property file: " + PROPERTY_FILE_NAME);
+            logger.error("Error occurred while reading property file: " + PROPERTY_FILE_NAME + " Error details are: " + e.getMessage());
         }
 
         maxPackageWeight = Integer.parseInt(properties.getProperty("max.package.weight"));
