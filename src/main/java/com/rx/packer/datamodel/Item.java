@@ -1,6 +1,8 @@
 package com.rx.packer.datamodel;
 
 /**
+ * Represents one item within a set.
+ * <p>
  * Created by RLYBD20 on 15/09/2017.
  */
 public final class Item {

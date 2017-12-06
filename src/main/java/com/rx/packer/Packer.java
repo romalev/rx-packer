@@ -52,15 +52,16 @@ public class Packer {
                             return Flowable.empty();
                         }))
                 .flatMap(set -> Flowable
-                                .fromIterable(set.getItems())
-                                .filter(item -> item.getWeight() <= set.getWeightPackageCanTake())
-                                .filter(item -> item.getCost() <= Parameters.getMaxItemCost())
-                                .doOnNext(item -> LOGGER.debug(item + " passed the basic validation."))
-                                .toList()
-                                .toFlowable()
-                                .map(helper::generateCombinations)
-                                .doOnNext(lists -> LOGGER.trace("Printing out all combinations to be considered for packaging. " + niceItemsMessageBuilder.build(lists)))
-                        //.zipWith(Flowable.just(set.getWeightPackageCanTake()), (s, w) -> new Set(w, s))
+                        .fromIterable(set.getItems())
+                        .filter(item -> item.getWeight() <= set.getWeightPackageCanTake()) // is this really needed ???
+                        .filter(item -> item.getWeight() <= Parameters.getMaxItemWeight())
+                        .filter(item -> item.getCost() <= Parameters.getMaxItemCost())
+                        .doOnNext(item -> LOGGER.debug(item + " passed the basic validation."))
+                        .toList()
+                        .toFlowable()
+                        // generate all possible combination of items
+                        .map(helper::generateCombinations)
+                        .doOnNext(lists -> LOGGER.trace("Printing out all combinations to be considered for packaging. " + niceItemsMessageBuilder.build(lists)))
                 )
                 .subscribe();
     }
