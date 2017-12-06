@@ -12,10 +12,10 @@ public final class Parameters {
 
     private static final Logger logger = Logger.getLogger(Parameters.class);
 
-    private static int maxPackageWeight;
-    private static int maxItemWeight;
-    private static int maxItemCost;
-    private static int maxPackageSize;
+    private static Double maxPackageWeight;
+    private static Double maxItemWeight;
+    private static Double maxItemCost;
+    private static Double maxPackageSize;
     private static String fileNameWithSets;
 
     public static void init(final String parametersFile) {
@@ -27,28 +27,28 @@ public final class Parameters {
             logger.error("Error occurred while reading parameters file: " + parametersFile + " Error details are: " + e.getMessage());
         }
 
-        maxPackageWeight = Integer.parseInt(properties.getProperty("max.package.weight"));
-        maxItemWeight = Integer.parseInt(properties.getProperty("max.item.weight"));
-        maxItemCost = Integer.parseInt(properties.getProperty("max.item.cost"));
-        maxPackageSize = Integer.parseInt(properties.getProperty("max.package.size"));
+        maxPackageWeight = Double.parseDouble(properties.getProperty("max.package.weight"));
+        maxItemWeight = Double.parseDouble(properties.getProperty("max.item.weight"));
+        maxItemCost = Double.parseDouble(properties.getProperty("max.item.cost"));
+        maxPackageSize = Double.parseDouble(properties.getProperty("max.package.size"));
         fileNameWithSets = properties.getProperty("fileName.with.input.sets");
 
         logger.info("Properties have been successfully read.");
     }
 
-    public static int getMaxPackageWeight() {
+    public static Double getMaxPackageWeight() {
         return maxPackageWeight;
     }
 
-    public static int getMaxItemWeight() {
+    public static Double getMaxItemWeight() {
         return maxItemWeight;
     }
 
-    public static int getMaxItemCost() {
+    public static Double getMaxItemCost() {
         return maxItemCost;
     }
 
-    public static int getMaxPackageSize() {
+    public static Double getMaxPackageSize() {
         return maxPackageSize;
     }
 

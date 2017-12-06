@@ -1,6 +1,8 @@
 package com.rx.packer;
 
 import com.rx.packer.builders.Builder;
+import com.rx.packer.builders.NiceItemsMessageBuilder;
+import com.rx.packer.datamodel.Item;
 import com.rx.packer.datamodel.Set;
 import com.rx.packer.utils.PackerHelper;
 import com.rx.packer.utils.Parameters;
@@ -8,6 +10,8 @@ import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableOnSubscribe;
 import org.apache.log4j.Logger;
+
+import java.util.List;
 
 /**
  * Entry point of an application.
@@ -30,6 +34,7 @@ public class Packer {
 
     public void execute() {
         LOGGER.info("Start packaging things ...");
+        final Builder<List<List<Item>>, String> niceItemsMessageBuilder = new NiceItemsMessageBuilder();
 
         Flowable
                 .defer(() -> Flowable.create(publisher, BackpressureStrategy.BUFFER))
@@ -49,12 +54,14 @@ public class Packer {
                 .flatMap(set -> Flowable
                                 .fromIterable(set.getItems())
                                 .filter(item -> item.getWeight() <= set.getWeightPackageCanTake())
-                                .doOnNext(item -> LOGGER.debug(item + " less than allowed: " + set.getWeightPackageCanTake()))
+                                .filter(item -> item.getCost() <= Parameters.getMaxItemCost())
+                                .doOnNext(item -> LOGGER.debug(item + " passed the basic validation."))
                                 .toList()
                                 .toFlowable()
                                 .map(helper::generateCombinations)
+                                .doOnNext(lists -> LOGGER.trace("Printing out all combinations to be considered for packaging. " + niceItemsMessageBuilder.build(lists)))
                         //.zipWith(Flowable.just(set.getWeightPackageCanTake()), (s, w) -> new Set(w, s))
                 )
-                .subscribe(lists -> LOGGER.info("Generated : " + lists.toString()));
+                .subscribe();
     }
 }
