@@ -18,6 +18,8 @@ public class PackerHelper {
      * Later on combinations are going to be looked up by special algorithm and best options will be picked and packaged.
      * <p/>
      * Example: given list : 1, 2, 3 -> output: [[1], [1,2], [2], [1,3], [1,2,3], [2,3], [3]]
+     * <p/>
+     * Just a note : this is IMHO the most complicated part of the task.
      *
      * @param itemList holds all items (ones that exist withing a set.)
      * @return all possible combinations of items.
@@ -52,6 +54,12 @@ public class PackerHelper {
     public List<Item> lookUpBestOptionsForPackaging(final List<List<Item>> allPossibleOptions,
                                                     final Double packageWeightLimit,
                                                     final Double packageSizeLimit) {
+        allPossibleOptions.forEach(itemList -> {
+            double totalWeight = itemList.stream().mapToDouble(Item::getWeight).sum();
+
+            double totalCost = itemList.stream().mapToDouble(Item::getCost).sum();
+        });
+
         return null;
     }
 }

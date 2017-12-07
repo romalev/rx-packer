@@ -9,6 +9,7 @@ import com.rx.packer.utils.Parameters;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.schedulers.Schedulers;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -38,11 +39,11 @@ public class Packer {
 
         Flowable
                 .defer(() -> Flowable.create(publisher, BackpressureStrategy.BUFFER))
+                //.subscribeOn(Schedulers.io())
                 .doOnNext(s -> LOGGER.debug("Operating on : " + s))
                 // 1. Building internal app objects based on the specified file.
                 .flatMap(inputLine -> Flowable
                         .just(inputLine)
-                        //.subscribeOn(Schedulers.io())
                         .filter(builder::validate)
                         .map(builder::build)
                         .doOnNext(p -> LOGGER.debug("Internal set has been successfully built : " + p))
@@ -60,9 +61,10 @@ public class Packer {
                         .toList()
                         .toFlowable()
                         // generate all possible combination of items
+                        .observeOn(Schedulers.computation())
                         .map(helper::generateCombinations)
                         .doOnNext(lists -> LOGGER.trace("Printing out all combinations to be considered for packaging. " + niceItemsMessageBuilder.build(lists)))
                 )
-                .subscribe();
+                .blockingSubscribe();
     }
 }
