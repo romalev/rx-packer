@@ -3,7 +3,7 @@ package com.rx.packer.datamodel;
 import java.util.List;
 
 /**
- * Package represents one row of the txt file -> a set of things to be placed within the package.
+ * Represents one row of the txt file -> a set of things to be placed within the package.
  */
 public final class Set {
 

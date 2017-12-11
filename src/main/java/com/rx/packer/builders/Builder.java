@@ -8,11 +8,6 @@ package com.rx.packer.builders;
 public interface Builder<I, O> {
 
     /**
-     * Validates input item. Should be called before build operation.
-     */
-    public boolean validate(I inputItem);
-
-    /**
      * Build something (O) based on input.
      */
     public O build(I inputItem);

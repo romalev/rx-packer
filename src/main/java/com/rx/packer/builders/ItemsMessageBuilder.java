@@ -25,8 +25,4 @@ public class ItemsMessageBuilder implements Builder<List<List<Item>>, String> {
         return result.toString();
     }
 
-    @Override
-    public boolean validate(List<List<Item>> inputItem) {
-        throw new NotImplementedException();
-    }
 }
