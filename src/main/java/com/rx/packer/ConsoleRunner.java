@@ -8,8 +8,6 @@ import com.rx.packer.utils.PackerHelper;
 import com.rx.packer.utils.Parameters;
 import org.apache.log4j.Logger;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * Responsible for running the packer app (the process of packaging from console)
  * <p>
