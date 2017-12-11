@@ -44,7 +44,7 @@ public class Packer {
                 // 1. Building internal app objects based on the specified file.
                 .flatMap(inputLine -> Flowable
                         .just(inputLine)
-                        .filter(builder::validate)
+                        // how about introducing a validation here ???
                         .map(builder::build)
                         .doOnNext(p -> LOGGER.debug("Internal set has been successfully built : " + p))
                         // swallowing all errors by just skipping the input line for processing.
