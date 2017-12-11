@@ -9,6 +9,7 @@ import com.rx.packer.utils.Parameters;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.schedulers.Schedulers;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -39,7 +40,8 @@ public class Packer {
 
         return Flowable
                 .defer(() -> Flowable.create(publisher, BackpressureStrategy.BUFFER))
-                //.observeOn(Schedulers.io())
+                // emitting items happens within a main thread while the processing happens within rx-schedulers.
+                .observeOn(Schedulers.io())
                 .doOnNext(s -> LOGGER.debug("Operating on : " + s))
                 // 1. Building internal app objects based on the specified file.
                 .flatMap(inputLine -> Flowable
@@ -61,8 +63,8 @@ public class Packer {
                         // there might be up to 15 items you need to choose from.
                         .filter(itemList -> itemList.size() < Parameters.getMaxPackageSize())
                         .toFlowable()
-                        // generate all possible combination of items
-                        //.observeOn(Schedulers.computation())
+                        // generate all possible combination of items using computation rx-pool.
+                        .observeOn(Schedulers.computation())
                         .map(helper::generateCombinations)
                         .doOnNext(lists -> LOGGER.trace("Printing out all combinations to be considered for packaging: " + niceItemsMessageBuilder.build(lists)))
                         .map(lists -> helper.lookUpBestOptionsForPackaging(lists, set.getWeightPackageCanTake()))
