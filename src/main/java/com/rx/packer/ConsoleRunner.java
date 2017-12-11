@@ -21,7 +21,8 @@ public class ConsoleRunner {
         Parameters.init("application.properties");
 
         Packer packer = new Packer(setBuilder, packerHelper, new FileRxBasedPublisher(Parameters.getFileNameWithSets()));
-        packer.execute();
+        // custom subscriber might be plugged below.
+        packer.pack().blockingSubscribe();
     }
 
 }

@@ -1,6 +1,7 @@
 package com.rx.packer.utils;
 
 import com.rx.packer.datamodel.Item;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,6 +13,8 @@ import java.util.List;
  * Created by RLYBD20 on 1/11/2017.
  */
 public class PackerHelper {
+
+    private Logger LOGGER = Logger.getLogger(PackerHelper.class);
 
     /**
      * Generates all possible unique combinations of the items within item list.
@@ -48,18 +51,32 @@ public class PackerHelper {
      *
      * @param allPossibleOptions holds all possible options of items for packaging.
      * @param packageWeightLimit holds allowed package weight limit.
-     * @param packageSizeLimit   holds allowed number of items to placed within a package.
      * @return package ready for delivering.
      */
     public List<Item> lookUpBestOptionsForPackaging(final List<List<Item>> allPossibleOptions,
-                                                    final Double packageWeightLimit,
-                                                    final Double packageSizeLimit) {
-        allPossibleOptions.forEach(itemList -> {
-            double totalWeight = itemList.stream().mapToDouble(Item::getWeight).sum();
+                                                    final Integer packageWeightLimit) {
+        double bestWeight = 0;
+        double bestCost = 0;
+        List<Item> bestOption = new ArrayList<>();
 
-            double totalCost = itemList.stream().mapToDouble(Item::getCost).sum();
-        });
-
-        return null;
+        for (final List<Item> itemList : allPossibleOptions) {
+            double combinationTotalWeight = itemList.stream().mapToDouble(Item::getWeight).sum();
+            if (combinationTotalWeight <= packageWeightLimit) {
+                // item list is to be considered for packaging.
+                double combinationTotalCost = itemList.stream().mapToDouble(Item::getCost).sum();
+                if (bestCost < combinationTotalCost) {
+                    bestWeight = combinationTotalWeight;
+                    bestCost = combinationTotalCost;
+                    bestOption = itemList;
+                }
+                if (bestCost == combinationTotalCost) {
+                    if (combinationTotalWeight < bestWeight) {
+                        bestWeight = combinationTotalWeight;
+                        bestOption = itemList;
+                    }
+                }
+            }
+        }
+        return bestOption;
     }
 }

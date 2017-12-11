@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class SetBuilderTest {
 
-    Builder<String, Set> builder;
+    private Builder<String, Set> builder;
 
     @Before
     public void setUp() {

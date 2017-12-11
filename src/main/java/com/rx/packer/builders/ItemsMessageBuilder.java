@@ -6,11 +6,11 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.List;
 
 /**
- * Builds a nice message of items to be packaged it can be output on console.
+ * Builds a nice message of items to be packaged which is to be output on console.
  * <p>
  * Created by RLYBD20 on 6/12/2017.
  */
-public class NiceItemsMessageBuilder implements Builder<List<List<Item>>, String> {
+public class ItemsMessageBuilder implements Builder<List<List<Item>>, String> {
 
     @Override
     public String build(List<List<Item>> lists) {

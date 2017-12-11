@@ -15,7 +15,7 @@ public final class Parameters {
     private static Double maxPackageWeight;
     private static Double maxItemWeight;
     private static Double maxItemCost;
-    private static Double maxPackageSize;
+    private static Integer maxPackageSize;
     private static String fileNameWithSets;
 
     public static void init(final String parametersFile) {
@@ -30,7 +30,7 @@ public final class Parameters {
         maxPackageWeight = Double.parseDouble(properties.getProperty("max.package.weight"));
         maxItemWeight = Double.parseDouble(properties.getProperty("max.item.weight"));
         maxItemCost = Double.parseDouble(properties.getProperty("max.item.cost"));
-        maxPackageSize = Double.parseDouble(properties.getProperty("max.package.size"));
+        maxPackageSize = Integer.parseInt(properties.getProperty("max.package.size"));
         fileNameWithSets = properties.getProperty("fileName.with.input.sets");
 
         logger.info("Properties have been successfully read.");
@@ -48,7 +48,7 @@ public final class Parameters {
         return maxItemCost;
     }
 
-    public static Double getMaxPackageSize() {
+    public static Integer getMaxPackageSize() {
         return maxPackageSize;
     }
 

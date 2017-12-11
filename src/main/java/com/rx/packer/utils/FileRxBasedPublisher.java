@@ -30,6 +30,7 @@ public class FileRxBasedPublisher implements FlowableOnSubscribe<String> {
                     .lines(getFileNamePath())
                     .forEach(s -> {
                         try {
+                            LOGGER.trace("Emitting: " + s);
                             emitter.onNext(s);
                         } catch (Exception e) {
                             emitter.onError(e);

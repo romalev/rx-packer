@@ -45,7 +45,7 @@ public final class Set {
 
     @Override
     public String toString() {
-        return "Package{" +
+        return "Set {" +
                 "weightPackageCanTake=" + weightPackageCanTake +
                 ", items=" + items +
                 '}';
