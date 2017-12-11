@@ -53,7 +53,5 @@ RxJava is considered as backbone to drive the solution for task described above.
 
 
 _Things to be improved:_ 
-* finish the task.
-* utilize the power of eclipse collection.
-* read a file enabling back - pressure. 
-* Read a file in a trully async way.
+* utilize the power of eclipse collection. 
+* Read a file in a truly async way.
